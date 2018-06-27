@@ -1,0 +1,12 @@
+vagrant_files/*
+!vagrant_files/database
+!vagrant_files/database/.gitkeep
+!vagrant_files/env-sample.sh
+!vagrant_files/sync
+!vagrant_files/sync/.gitkeep
+!vagrant_files/Vagrantfile
+!vagrant_files/env-sample.sh
+!vagrant_files/setup.sh
+wp-config.php
+
+
