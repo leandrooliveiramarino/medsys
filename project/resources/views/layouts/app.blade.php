@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -30,6 +32,16 @@
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
+                    </a>
+                    <span class="navbar-brand"> | </span>
+                    <a class="navbar-brand navbar-brand-item {{ active('schedules') }}" href="{{ route('schedules') }}">
+                        Agendamento
+                    </a>
+                    <a class="navbar-brand navbar-brand-item {{ active('doctors') }}" href="{{ route('doctors') }}">
+                        Médicos
+                    </a>
+                    <a class="navbar-brand navbar-brand-item {{ active('patients') }}" href="{{ route('patients') }}">
+                        Paciente
                     </a>
                 </div>
 

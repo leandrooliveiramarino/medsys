@@ -18,3 +18,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth']], function () {
+
+    /* Schedule */
+    Route::get('/schedules', 'ScheduleController@index')->name('schedules');
+    Route::get('/schedules/create', 'ScheduleController@create')->name('schedules.create');
+
+    /* Doctor */
+    Route::get('/doctors', 'DoctorController@index')->name('doctors');
+
+    /* Schedule */
+    Route::get('/patients', 'PatientController@index')->name('patients');
+
+});
