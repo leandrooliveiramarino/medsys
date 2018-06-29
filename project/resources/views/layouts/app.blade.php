@@ -12,9 +12,22 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-timepicker.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
+        @if ($errors->any())
+            <div class="alert alert-danger text-center">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -30,6 +43,16 @@
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
+                    </a>
+                    <span class="navbar-brand"> | </span>
+                    <a class="navbar-brand navbar-brand-item {{ active('schedule.index') }}" href="{{ route('schedule.index') }}">
+                        Agendamento
+                    </a>
+                    <a class="navbar-brand navbar-brand-item {{ active('doctor.index') }}" href="{{ route('doctor.index') }}">
+                        Médicos
+                    </a>
+                    <a class="navbar-brand navbar-brand-item {{ active('patient.index') }}" href="{{ route('patient.index') }}">
+                        Paciente
                     </a>
                 </div>
 

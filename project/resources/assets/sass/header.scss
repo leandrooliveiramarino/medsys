@@ -1,0 +1,11 @@
+.navbar-header {
+    .navbar-brand-item {
+        font-size: 14px;
+    }
+    .navbar-brand-item:hover {
+        text-decoration: underline;
+    }
+    .navbar-brand-item.active {
+        text-decoration: underline;
+    }
+}
