@@ -11,8 +11,18 @@ class Patient extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function schedules()
+    public function schedule()
     {
-        return $this->belongsToMany('Schedule');
+        return $this->hasOne('App\Schedule');
+    }
+
+    /**
+     * Retorna o usuário ao qual o paciente pertence.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
     }
 }

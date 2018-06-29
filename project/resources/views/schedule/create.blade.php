@@ -8,17 +8,18 @@
         </div>
         <div class="panel-body">
             <form method="POST" action="{{ route('schedule.store') }}">
+                {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label for="schedule_date">Data da consulta *</label>
-                            <input class="form-control" id="schedule_date" name="schedule_date" maxlength="100" required placeholder="Data da consulta">
+                            <input class="form-control" id="schedule_date" name="schedule_date" maxlength="100" autocomplete="off" required placeholder="Data da consulta">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
                             <label for="schedule_time">Horário consulta *</label>
-                            <input class="form-control" id="schedule_time" name="schedule_time" maxlength="100" required placeholder="Data da consulta">
+                            <input class="form-control" id="schedule_time" name="schedule_time" maxlength="100" autocomplete="off" required placeholder="Data da consulta">
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -32,7 +33,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="doctor">Médico *</label>
-                            <select class="form-control" name="id_doctor" id="doctor" placeholder="Selecionar médico">
+                            <select class="form-control" name="doctor_id" id="doctor" placeholder="Selecionar médico">
                                 @foreach($doctor_list as $key => $name)
                                     <option value="{!! $key !!}">{!! $name !!}</option>
                                 @endforeach
@@ -42,7 +43,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="patient">Paciente *</label>
-                            <select class="form-control" name="id_patient" id="patient" placeholder="Selecionar Paciente">
+                            <select class="form-control" name="patient_id" id="patient" placeholder="Selecionar Paciente">
                                 @foreach($patient_list as $key => $name)
                                     <option value="{!! $key !!}">{!! $name !!}</option>
                                 @endforeach

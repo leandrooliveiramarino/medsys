@@ -34,6 +34,16 @@ class User extends Authenticatable
      */
     public function schedules()
     {
-        return $this->hasMany('Schedule', 'user_id');
+        return $this->hasMany('App\Schedule', 'user_id');
+    }
+
+    public function patients()
+    {
+        return $this->hasMany('App\Patient', 'user_id');
+    }
+
+    public function doctors()
+    {
+        return $this->hasMany('App\Doctor', 'user_id');
     }
 }

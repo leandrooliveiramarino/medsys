@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Schedule extends Model
 {
@@ -13,7 +14,15 @@ class Schedule extends Model
      * @var array
      */
     protected $fillable = [
-        'consultation_time', 'consultation_datetime'
+        'consultation_time',
+        'patient_id',
+        'doctor_id',
+        'consultation_datetime'
+    ];
+
+    protected $guarded = [
+        'schedule_date',
+        'schedule_time'
     ];
 
     /**
@@ -23,7 +32,7 @@ class Schedule extends Model
      */
     public function user()
     {
-        return $this->belongsTo('User', 'user_id');
+        return $this->belongsTo('App\User', 'id');
     }
 
     /**
@@ -33,7 +42,7 @@ class Schedule extends Model
      */
     public function patient()
     {
-        return $this->hasOne('Patient');
+        return $this->belongsTo('App\Patient', 'patient_id');
     }
 
     /**
@@ -43,6 +52,29 @@ class Schedule extends Model
      */
     public function doctor()
     {
-        return $this->hasOne('Doctor');
+        return $this->belongsTo('App\Doctor', 'doctor_id');
+    }
+
+    public function setConsultationDatetimeAttribute($value)
+    {
+        $this->attributes['consultation_datetime'] = Carbon::createFromFormat('d/m/Y H:i', $value);
+    }
+
+    public function getConsultationDatetimeAttribute()
+    {
+        $carbon = new Carbon($this->attributes['consultation_datetime']);
+        return $carbon->format('d/m/Y H\hi');
+    }
+
+    public function getScheduleDateAttribute()
+    {
+        $carbon = new Carbon($this->attributes['consultation_datetime']);
+        return $carbon->format('d/m/Y');
+    }
+
+    public function getScheduleTimeAttribute()
+    {
+        $carbon = new Carbon($this->attributes['consultation_datetime']);
+        return $carbon->format('H:i');
     }
 }

@@ -8362,3 +8362,12 @@ button.close {
   text-decoration: underline;
 }
 
+.form-delete-button {
+  display: inline-block;
+}
+
+.form-delete-button button {
+  border: 0;
+  background-color: transparent;
+}
+

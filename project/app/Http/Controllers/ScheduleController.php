@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Schedule;
-use App\Patient;
+use Auth;
 use App\Doctor;
+use App\Patient;
+use App\Schedule;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreSchedule;
 
 class ScheduleController extends Controller
 {
@@ -18,7 +20,6 @@ class ScheduleController extends Controller
     {
         $schedule = new Schedule();
         $schedule_list = $schedule->all();
-
         return view('schedule.index', compact('schedule_list'));
     }
 
@@ -31,7 +32,6 @@ class ScheduleController extends Controller
     {
         $doctor = new Doctor();
         $patient = new Patient();
-
         $doctor_list = $doctor->all()->pluck('name', 'id');
         $patient_list = $patient->all()->pluck('name', 'id');
 
@@ -44,9 +44,16 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSchedule $request)
     {
-        //
+        $schedule = new Schedule();
+        $schedule->fill($request->all());
+        $schedule->user_id = Auth::user()->id;
+        $schedule->consultation_datetime = $request->schedule_date . ' ' . $request->schedule_time;
+
+        if($schedule->save()) {
+            return redirect()->route('schedule.index');
+        }
     }
 
     /**
@@ -59,10 +66,8 @@ class ScheduleController extends Controller
     {
         $doctor = new Doctor();
         $patient = new Patient();
-
         $doctor_list = $doctor->all()->pluck('name', 'id');
         $patient_list = $patient->all()->pluck('name', 'id');
-
         return view('schedule.edit', compact('doctor_list', 'patient_list', 'schedule'));
     }
 
@@ -73,9 +78,15 @@ class ScheduleController extends Controller
      * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schedule $schedule)
+    public function update(StoreSchedule $request, Schedule $schedule)
     {
-        //
+        $schedule->fill($request->all());
+        $schedule->user_id = Auth::user()->id;
+        $schedule->consultation_datetime = $request->schedule_date . ' ' . $request->schedule_time;
+
+        if($schedule->save()) {
+            return redirect()->route('schedule.index');
+        }
     }
 
     /**
@@ -86,6 +97,7 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        //
+        $schedule->delete();
+        return redirect()->route('schedule.index');
     }
 }

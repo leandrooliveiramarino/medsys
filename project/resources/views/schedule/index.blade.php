@@ -24,12 +24,17 @@
                     <td class="text-center">{{ $schedule->id }}</td>
                     <td class="text-center">{{ $schedule->doctor->name }}</td>
                     <td class="text-center">{{ $schedule->patient->name }}</td>
-                    <td class="text-center">{{ $schedule->consultation_date }} 05.07.2018 - 07h15</td>
+                    <td class="text-center">{{ $schedule->consultation_datetime }}</td>
                     <td class="text-center manager">
                         <a href="{!! route('schedule.edit', $schedule->id) !!}" alt="Editar"><i class="fa fa-pencil"></i></a>
                         &nbsp;
                         &nbsp;
-                        <a href="{!! route('schedule.destroy', $schedule->id) !!}" alt="Remover"><i class="fa fa-trash"></i></a>
+                        <form class="form-delete-button" method="post" action="{!! route('schedule.destroy', $schedule) !!}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            {{ csrf_field() }}
+                            <button><i class="fa fa-trash"></i></button>
+                        </form>
+                        <!-- <a href="{!! route('schedule.destroy', $schedule->id) !!}" alt="Remover"><i class="fa fa-trash"></i></a> -->
                     </td>
                 </tr>
                 @endforeach
