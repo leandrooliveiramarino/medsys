@@ -2,11 +2,15 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
 class Schedule extends Model
 {
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -42,7 +46,7 @@ class Schedule extends Model
      */
     public function patient()
     {
-        return $this->belongsTo('App\Patient', 'patient_id');
+        return $this->belongsTo('App\Patient', 'patient_id')->withTrashed();
     }
 
     /**
@@ -52,7 +56,7 @@ class Schedule extends Model
      */
     public function doctor()
     {
-        return $this->belongsTo('App\Doctor', 'doctor_id');
+        return $this->belongsTo('App\Doctor', 'doctor_id')->withTrashed();
     }
 
     public function setConsultationDatetimeAttribute($value)

@@ -19,6 +19,15 @@
 </head>
 <body>
     <div id="app">
+        @if ($errors->any())
+            <div class="alert alert-danger text-center">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">

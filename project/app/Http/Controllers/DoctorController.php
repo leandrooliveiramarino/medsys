@@ -18,7 +18,9 @@ class DoctorController extends Controller
     public function index()
     {
         $doctor = new Doctor();
-        $doctor_list = $doctor->all();
+        $doctor_list = $doctor
+            ->where('user_id', '=', Auth::user()->id)
+            ->get();
         return view('doctor.index', compact('doctor_list'));
     }
 

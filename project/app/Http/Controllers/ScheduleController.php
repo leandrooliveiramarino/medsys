@@ -19,7 +19,9 @@ class ScheduleController extends Controller
     public function index()
     {
         $schedule = new Schedule();
-        $schedule_list = $schedule->all();
+        $schedule_list = $schedule
+            ->where('user_id', '=', Auth::user()->id)
+            ->get();
         return view('schedule.index', compact('schedule_list'));
     }
 
@@ -32,8 +34,12 @@ class ScheduleController extends Controller
     {
         $doctor = new Doctor();
         $patient = new Patient();
-        $doctor_list = $doctor->all()->pluck('name', 'id');
-        $patient_list = $patient->all()->pluck('name', 'id');
+        $doctor_list = $doctor
+            ->where('user_id', '=', Auth::user()->id)
+            ->pluck('name', 'id');
+        $patient_list = $patient
+            ->where('user_id', '=', Auth::user()->id)
+            ->pluck('name', 'id');
 
         return view('schedule.create', compact('doctor_list', 'patient_list'));
     }
@@ -66,8 +72,15 @@ class ScheduleController extends Controller
     {
         $doctor = new Doctor();
         $patient = new Patient();
-        $doctor_list = $doctor->all()->pluck('name', 'id');
-        $patient_list = $patient->all()->pluck('name', 'id');
+        $doctor_list = $doctor
+            ->withTrashed()
+            ->where('user_id', '=', Auth::user()->id)
+            ->pluck('name', 'id');
+        $patient_list = $patient
+            ->withTrashed()
+            ->where('user_id', '=', Auth::user()->id)
+            ->pluck('name', 'id');
+
         return view('schedule.edit', compact('doctor_list', 'patient_list', 'schedule'));
     }
 

@@ -39,8 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/patients', 'PatientController@index')->name('patient.index');
     Route::get('/patient/create', 'PatientController@create')->name('patient.create');
     Route::post('/patient/store', 'PatientController@store')->name('patient.store');
-    Route::get('/patient/edit/{doctor}', 'PatientController@edit')->name('patient.edit');
-    Route::put('/patient/update/{doctor}', 'PatientController@update')->name('patient.update');
-    Route::delete('/patient/destroy/{doctor}', 'PatientController@destroy')->name('patient.destroy');
+    Route::get('/patient/edit/{patient}', 'PatientController@edit')->name('patient.edit');
+    Route::put('/patient/update/{patient}', 'PatientController@update')->name('patient.update');
+    Route::delete('/patient/destroy/{patient}', 'PatientController@destroy')->name('patient.destroy');
 
 });
