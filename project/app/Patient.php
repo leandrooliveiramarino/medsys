@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
+    protected $fillable = [
+        'name',
+        'user_id'
+    ];
     /**
      * Retorna os agendamentos do paciente
      *

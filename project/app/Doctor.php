@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
 {
+    protected $fillable = [
+        'name',
+        'user_id',
+        'expertise_id'
+    ];
+
     /**
      * Retorna os agendamentos do paciente
      *
@@ -28,7 +34,7 @@ class Doctor extends Model
 
     public function expertise()
     {
-        return $this->hasOne('App\Expertise', 'expertise_id');
+        return $this->belongsTo('App\Expertise', 'expertise_id');
     }
 
 }

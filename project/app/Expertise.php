@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Expertise extends Model
 {
-    public function doctors()
+    public function doctor()
     {
-        return $this->belongsToMany('Doctor', 'expertise_id');
+        return $this->hasOne('Doctor', 'expertise_id');
     }
 }
