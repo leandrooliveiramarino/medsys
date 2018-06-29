@@ -16,7 +16,9 @@ class CreateDoctorsTable extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('user_id')->unsigned();
             $table->integer('expertise_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('expertise_id')->references('id')->on('expertises');
             $table->timestamps();
             $table->softDeletes();

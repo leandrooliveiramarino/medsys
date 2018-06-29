@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Schedulings;
+use App\Schedule;
+use App\Patient;
+use App\Doctor;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -14,7 +16,10 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        return view('schedule.index');
+        $schedule = new Schedule();
+        $schedule_list = $schedule->all();
+
+        return view('schedule.index', compact('schedule_list'));
     }
 
     /**
@@ -24,7 +29,13 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        $doctor = new Doctor();
+        $patient = new Patient();
+
+        $doctor_list = $doctor->all()->pluck('name', 'id');
+        $patient_list = $patient->all()->pluck('name', 'id');
+
+        return view('schedule.create', compact('doctor_list', 'patient_list'));
     }
 
     /**
@@ -39,35 +50,30 @@ class ScheduleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Schedulings  $schedulings
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Schedulings $schedulings)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Schedulings  $schedulings
+     * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function edit(Schedulings $schedulings)
+    public function edit(Schedule $schedule)
     {
-        //
+        $doctor = new Doctor();
+        $patient = new Patient();
+
+        $doctor_list = $doctor->all()->pluck('name', 'id');
+        $patient_list = $patient->all()->pluck('name', 'id');
+
+        return view('schedule.edit', compact('doctor_list', 'patient_list', 'schedule'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Schedulings  $schedulings
+     * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schedulings $schedulings)
+    public function update(Request $request, Schedule $schedule)
     {
         //
     }
@@ -75,10 +81,10 @@ class ScheduleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Schedulings  $schedulings
+     * @param  \App\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Schedulings $schedulings)
+    public function destroy(Schedule $schedule)
     {
         //
     }

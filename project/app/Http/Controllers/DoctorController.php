@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Doctors;
+use App\Doctor;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -41,10 +41,10 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Doctors  $doctors
+     * @param  \App\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctors $doctors)
+    public function show(Doctor $doctor)
     {
         //
     }
@@ -52,10 +52,10 @@ class DoctorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Doctors  $doctors
+     * @param  \App\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctors $doctors)
+    public function edit(Doctor $doctor)
     {
         //
     }
@@ -64,10 +64,10 @@ class DoctorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Doctors  $doctors
+     * @param  \App\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Doctors $doctors)
+    public function update(Request $request, Doctor $doctor)
     {
         //
     }
@@ -75,10 +75,10 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Doctors  $doctors
+     * @param  \App\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctors $doctors)
+    public function destroy(Doctor $doctor)
     {
         //
     }

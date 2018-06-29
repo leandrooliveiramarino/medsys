@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Patients;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -41,10 +41,10 @@ class PatientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Patients  $patients
+     * @param  \App\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show(Patients $patients)
+    public function show(Patient $patient)
     {
         //
     }
@@ -52,10 +52,10 @@ class PatientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Patients  $patients
+     * @param  \App\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patients $patients)
+    public function edit(Patient $patient)
     {
         //
     }
@@ -64,10 +64,10 @@ class PatientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Patients  $patients
+     * @param  \App\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patients $patients)
+    public function update(Request $request, Patient $patient)
     {
         //
     }
@@ -75,10 +75,10 @@ class PatientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Patients  $patients
+     * @param  \App\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Patients $patients)
+    public function destroy(Patient $patient)
     {
         //
     }

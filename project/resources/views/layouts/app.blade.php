@@ -14,6 +14,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-timepicker.min.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -34,13 +36,13 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                     <span class="navbar-brand"> | </span>
-                    <a class="navbar-brand navbar-brand-item {{ active('schedules') }}" href="{{ route('schedules') }}">
+                    <a class="navbar-brand navbar-brand-item {{ active('schedule.index') }}" href="{{ route('schedule.index') }}">
                         Agendamento
                     </a>
-                    <a class="navbar-brand navbar-brand-item {{ active('doctors') }}" href="{{ route('doctors') }}">
+                    <a class="navbar-brand navbar-brand-item {{ active('doctor.index') }}" href="{{ route('doctor.index') }}">
                         Médicos
                     </a>
-                    <a class="navbar-brand navbar-brand-item {{ active('patients') }}" href="{{ route('patients') }}">
+                    <a class="navbar-brand navbar-brand-item {{ active('patient.index') }}" href="{{ route('patient.index') }}">
                         Paciente
                     </a>
                 </div>

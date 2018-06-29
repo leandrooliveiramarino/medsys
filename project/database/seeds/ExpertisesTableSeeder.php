@@ -13,14 +13,17 @@ class ExpertisesTableSeeder extends Seeder
     public function run()
     {
         DB::table('expertises')->insert([
+            'id' => 1,
             'expertise' => 'Neurologista'
         ]);
 
         DB::table('expertises')->insert([
+            'id' => 2,
             'expertise' => 'Cardiologista'
         ]);
 
         DB::table('expertises')->insert([
+            'id' => 3,
             'expertise' => 'Dermatologista'
         ]);
     }

@@ -4,33 +4,35 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 text-center">
-            <a href="{{ route('schedules.create') }}" class="btn btn-primary pull-left">Adicionar novo</a>
+            <a href="{{ route('schedule.create') }}" class="btn btn-primary pull-left">Adicionar novo</a>
         </div>
     </div>
     <div class="row">
         <table class="display datatables" style="width:100%">
             <thead>
                 <tr>
-                    <th width="20%" class="text-center">Nome</th>
-                    <th width="20%" class="text-center">E-mail</th>
-                    <th width="15%" class="text-center">CPF/CNPJ</th>
-                    <th width="15%" class="text-center">Telefone</th>
-                    <th width="15%" class="text-center dt-no-sort" class="text-center">Gerenciar</th>
+                    <th width="5%" class="text-center">Cód.</th>
+                    <th width="20%" class="text-center">Médico</th>
+                    <th width="20%" class="text-center">Paciente</th>
+                    <th width="30%" class="text-center">Data da Consulta</th>
+                    <th width="25%" class="text-center dt-no-sort" class="text-center">Gerenciar</th>
                 </tr>
             </thead>
             <tbody>
-                <tr data-id="2">
-                    <td class="text-center">nome</td>
-                    <td class="text-center">emailFormatted</td>
-                    <td class="text-center">cpfCnpjFormatted</td>
-                    <td class="text-center">telefoneFormatted</td>
+                @foreach($schedule_list as $schedule)
+                <tr data-id="{{ $schedule->id }}">
+                    <td class="text-center">{{ $schedule->id }}</td>
+                    <td class="text-center">{{ $schedule->doctor->name }}</td>
+                    <td class="text-center">{{ $schedule->patient->name }}</td>
+                    <td class="text-center">{{ $schedule->consultation_date }} 05.07.2018 - 07h15</td>
                     <td class="text-center manager">
-                        <a href="#" alt="Editar"><i class="fa fa-pencil"></i></a>
+                        <a href="{!! route('schedule.edit', $schedule->id) !!}" alt="Editar"><i class="fa fa-pencil"></i></a>
                         &nbsp;
                         &nbsp;
-                        <a href="#" alt="Remover" data-delete="2" data-title="Remover cliente" data-body="Realmente deseja remover o cliente?"><i class="fa fa-trash"></i></a>
+                        <a href="{!! route('schedule.destroy', $schedule->id) !!}" alt="Remover"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
